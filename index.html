@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lab 10: Network and Transport Layers</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Lab 10: Network and Transport Layers</h1>
+    <nav>
+      <a href="#theory">Theory</a>
+      <a href="#practical">Practical</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Theoretical Part -->
+    <section id="theory">
+      <h2>Theoretical Part</h2>
+      <article>
+        <h3>TCP (Transmission Control Protocol)</h3>
+        <p>TCP is a connection-oriented protocol that ensures reliable data transmission between devices. It is widely used for applications like web browsing, email, and file transfers.</p>
+        <ul>
+          <li><strong>Parameters:</strong> Sequence number, acknowledgment number, window size, etc.</li>
+          <li><strong>Features:</strong> Reliable delivery, error checking, flow control.</li>
+        </ul>
+
+        <h3>UDP (User Datagram Protocol)</h3>
+        <p>UDP is a connectionless protocol designed for low-latency communication where reliability is not critical, such as video streaming or DNS queries.</p>
+        <ul>
+          <li><strong>Parameters:</strong> Source port, destination port, length, checksum.</li>
+          <li><strong>Features:</strong> Fast transmission, no guarantee of delivery.</li>
+        </ul>
+
+        <h3>TCP Connection Process</h3>
+        <ol>
+          <li><strong>Three-way Handshake:</strong>
+            <ul>
+              <li><strong>SYN:</strong> Client sends SYN to initiate a connection.</li>
+              <li><strong>SYN-ACK:</strong> Server acknowledges with SYN-ACK.</li>
+              <li><strong>ACK:</strong> Client responds with ACK, establishing the connection.</li>
+            </ul>
+          </li>
+          <li><strong>Connection Termination:</strong>
+            <ul>
+              <li><strong>FIN:</strong> One side sends a FIN to close the connection.</li>
+              <li><strong>ACK:</strong> The other side acknowledges with ACK.</li>
+            </ul>
+          </li>
+        </ol>
+
+        <h3>Ports</h3>
+        <p>Ports are numerical identifiers used to distinguish different services on a host. For example, HTTP uses port 80, and HTTPS uses port 443.</p>
+      </article>
+    </section>
+
+    <!-- Practical Part -->
+    <section id="practical">
+      <h2>Practical Part</h2>
+
+      <article>
+        <h3>Task 1: Analyze Ports with netstat and Wireshark</h3>
+        <p>Steps:</p>
+        <ol>
+          <li>Open a browser and visit <a href="https://www.google.com" target="_blank">www.google.com</a>.</li>
+          <li>Run <code>netstat</code>:
+            <pre><code>netstat -an</code></pre>
+            <p>Identify local and remote ports used by the browser.</p>
+          </li>
+          <li>Capture packets in Wireshark:
+            <ul>
+              <li>Start Wireshark and select your active network interface.</li>
+              <li>Use a filter like <code>tcp.port == 443</code> to see HTTPS traffic.</li>
+              <li>Analyze the captured packets to identify local and remote ports.</li>
+            </ul>
+          </li>
+          <li>Close the browser and check the connection state using netstat.</li>
+        </ol>
+
+        <h3>Task 2: Transfer File Using FTP</h3>
+        <ol>
+          <li>Install an FTP client (e.g., FileZilla) if not already installed.</li>
+          <li>Connect to <code>studife.it.p.lodz.pl</code> using your credentials.</li>
+          <li>Upload a test file (e.g., <code>test.txt</code>).</li>
+          <li>Run <code>netstat</code> and use Wireshark to identify ports during the file transfer (typically port 21 for FTP).</li>
+          <li>End the connection and verify port state with netstat.</li>
+        </ol>
+
+        <h3>Task 3: Transfer File Using SCP/SFTP</h3>
+        <ol>
+          <li>Open a terminal or an SFTP client.</li>
+          <li>Run the command:
+            <pre><code>scp test.txt username@studife.it.p.lodz.pl:/path/to/destination</code></pre>
+            <p>Replace <code>username</code> with your login and <code>/path/to/destination</code> with the target path.</p>
+          </li>
+          <li>Monitor ports using <code>netstat</code> and Wireshark during the transfer (SFTP typically uses port 22).</li>
+          <li>Close the connection and check port states.</li>
+        </ol>
+
+        <h3>Task 4: Analyze DNS Protocol</h3>
+        <ol>
+          <li>Start Wireshark and filter DNS traffic:
+            <pre><code>dns</code></pre>
+          </li>
+          <li>Visit a website (e.g., <a href="https://www.google.com" target="_blank">www.google.com</a>).</li>
+          <li>Observe DNS queries and responses. Note that DNS typically uses UDP port 53.</li>
+          <li>Analyze packet details to confirm protocol and port usage.</li>
+        </ol>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <p>Created for IT Lab 10 by [Your Name]</p>
+  </footer>
+</body>
+</html>
